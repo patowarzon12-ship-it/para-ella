@@ -1,0 +1,1646 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Holaaa 💗</title>
+
+<style>
+
+/* =====================================================
+   CONFIGURACIÓN GENERAL
+===================================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    font-family: Arial, sans-serif;
+
+    cursor: none;
+}
+
+
+/* =====================================================
+   CURSOR CINNAMOROLL
+===================================================== */
+
+#cursorGif {
+
+    position: fixed;
+
+    left: 0;
+    top: 0;
+
+    width: 42px;
+    height: 42px;
+
+    pointer-events: none;
+
+    z-index: 99999;
+
+    transform: translate(-50%, -50%);
+}
+
+
+/* =====================================================
+   VIDEO DE FONDO DEL INICIO
+===================================================== */
+
+#videoFondo {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    z-index: -10;
+}
+
+
+/* =====================================================
+   FILTRO DEL VIDEO
+===================================================== */
+
+#filtro {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.20);
+
+    z-index: -9;
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   PANTALLA DE CONTRASEÑA
+===================================================== */
+
+#login {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    color: white;
+
+    background: transparent;
+
+    z-index: 100;
+}
+
+
+/* =====================================================
+   TITULO
+===================================================== */
+
+#login h1 {
+
+    font-size: 60px;
+
+    margin-bottom: 15px;
+
+    color: white;
+
+    background: transparent;
+
+    text-shadow:
+
+        0 0 8px black,
+        0 0 18px black,
+        0 0 35px rgba(255,255,255,0.4);
+}
+
+
+/* =====================================================
+   PISTA
+===================================================== */
+
+#pista {
+
+    font-size: 18px;
+
+    margin-bottom: 20px;
+
+    color: white;
+
+    background: transparent;
+
+    text-shadow:
+
+        0 0 8px black,
+        0 0 15px black;
+}
+
+
+/* =====================================================
+   CONTRASEÑA TRANSPARENTE
+===================================================== */
+
+#password {
+
+    width: 250px;
+
+    padding: 13px;
+
+    border:
+
+        2px solid
+        rgba(255,255,255,0.75);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    margin-bottom: 12px;
+
+    background:
+
+        rgba(0,0,0,0.12);
+
+    color: white;
+
+    backdrop-filter: blur(2px);
+
+    -webkit-backdrop-filter: blur(2px);
+}
+
+
+#password::placeholder {
+
+    color:
+
+        rgba(255,255,255,0.90);
+}
+
+
+/* =====================================================
+   BOTÓN ENTRAR TRANSPARENTE
+===================================================== */
+
+#entrar {
+
+    padding:
+
+        12px 30px;
+
+    border:
+
+        2px solid
+        rgba(255,255,255,0.75);
+
+    border-radius: 10px;
+
+    background:
+
+        rgba(255,255,255,0.12);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: none;
+
+    backdrop-filter: blur(2px);
+
+    -webkit-backdrop-filter: blur(2px);
+
+    text-shadow:
+
+        0 0 5px black;
+}
+
+
+#entrar:hover {
+
+    background:
+
+        rgba(255,255,255,0.25);
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+#error {
+
+    margin-top: 12px;
+
+    color: #ff7777;
+
+    background: transparent;
+
+    display: none;
+
+    text-shadow:
+
+        0 0 8px black;
+}
+
+
+/* =====================================================
+   FONDO MUSICAL
+===================================================== */
+
+#fondoMusical {
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #000000;
+
+    z-index: -20;
+
+    transition:
+
+        background 1s ease;
+}
+
+
+/*
+   Brillo suave encima del fondo musical
+*/
+
+#fondoMusical::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        rgba(0,0,0,0.18);
+
+    pointer-events: none;
+}
+
+
+/* =====================================================
+   CONTENEDOR PRINCIPAL
+===================================================== */
+
+#musicaContainer {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    padding-left: 3vw;
+
+    padding-right: 3vw;
+}
+
+
+/* =====================================================
+   ZONA DE MUSICA
+===================================================== */
+
+#zonaMusica {
+
+    width: 52vw;
+
+    min-width: 480px;
+
+    max-width: 760px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   PORTADA
+===================================================== */
+
+#portadaContainer {
+
+    width: 230px;
+
+    height: 230px;
+
+    flex-shrink: 0;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: transparent;
+
+    box-shadow:
+
+        0 0 25px rgba(0,0,0,0.8),
+
+        0 0 50px
+        rgba(255,255,255,0.08);
+}
+
+
+#logoCancion {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    background: transparent;
+
+    opacity: 1;
+
+    transition:
+
+        opacity 0.4s ease;
+}
+
+
+/* =====================================================
+   CONTROLES DE MUSICA
+===================================================== */
+
+#controlesMusica {
+
+    flex: 1;
+
+    color: white;
+
+    background: transparent;
+}
+
+
+#tituloCancion {
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+    color: white;
+
+    background: transparent;
+
+    text-shadow:
+
+        0 0 10px black,
+        0 0 20px black;
+
+    transition:
+
+        opacity 0.4s ease;
+}
+
+
+/* =====================================================
+   VOLUMEN
+===================================================== */
+
+#volumen {
+
+    width: 245px;
+
+    margin-bottom: 20px;
+
+    cursor: none;
+}
+
+
+/* =====================================================
+   BOTONES MUSICA
+===================================================== */
+
+#botonMusica,
+#botonSiguiente {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding:
+
+        11px 18px;
+
+    margin-right: 8px;
+
+    background:
+
+        rgba(255,255,255,0.90);
+
+    color: black;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: none;
+}
+
+
+#botonMusica:hover,
+#botonSiguiente:hover {
+
+    background: white;
+}
+
+
+/* =====================================================
+   ESTADO DE MUSICA
+===================================================== */
+
+#estadoMusica {
+
+    position: fixed;
+
+    bottom: 20px;
+
+    left: 25px;
+
+    color: white;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    text-shadow:
+
+        0 0 8px black;
+
+    z-index: 50;
+}
+
+
+/* =====================================================
+   GATITO
+===================================================== */
+
+#gatitoMusical {
+
+    position: fixed;
+
+    left: 35px;
+
+    bottom: 20px;
+
+    width: 150px;
+
+    height: 150px;
+
+    object-fit: contain;
+
+    background: transparent;
+
+    image-rendering: pixelated;
+
+    pointer-events: none;
+
+    z-index: 40;
+
+    filter:
+
+        drop-shadow(
+            0 0 7px
+            rgba(255,255,255,0.25)
+        )
+
+        drop-shadow(
+            0 8px 12px
+            rgba(0,0,0,0.65)
+        );
+
+    animation:
+
+        aparecerGatito 1s ease;
+}
+
+
+/* =====================================================
+   ANIMACIÓN DEL GATITO
+===================================================== */
+
+@keyframes aparecerGatito {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   ZONA DEL JUEGO
+===================================================== */
+
+#zonaJuego {
+
+    position: absolute;
+
+    right: 3vw;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    width: 38vw;
+
+    height: 80vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: transparent;
+
+    z-index: 10;
+}
+
+
+/* =====================================================
+   MARCO DEL JUEGO
+===================================================== */
+
+#marcoJuego {
+
+    width: 100%;
+
+    height: 100%;
+
+    background: rgba(0,0,0,0.55);
+
+    border:
+
+        3px solid
+        rgba(255,255,255,0.55);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    box-shadow:
+
+        0 0 25px
+        rgba(0,0,0,0.7),
+
+        0 0 50px
+        rgba(255,255,255,0.08);
+}
+
+
+/* =====================================================
+   IFRAME KIRBY
+===================================================== */
+
+#marcoJuego iframe {
+
+    width: 100%;
+
+    height: 100%;
+
+    border: none;
+
+    display: block;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1000px) {
+
+    #musicaContainer {
+
+        justify-content: center;
+
+        padding-left: 20px;
+
+        padding-right: 20px;
+    }
+
+
+    #zonaJuego {
+
+        display: none;
+    }
+
+
+    #zonaMusica {
+
+        width: 90vw;
+
+        min-width: 0;
+
+        max-width: 700px;
+    }
+
+
+    #portadaContainer {
+
+        width: 220px;
+
+        height: 220px;
+    }
+
+
+    #gatitoMusical {
+
+        width: 120px;
+
+        height: 120px;
+
+        left: 15px;
+
+        bottom: 10px;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    #zonaMusica {
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+
+    #portadaContainer {
+
+        width: 180px;
+
+        height: 180px;
+    }
+
+
+    #controlesMusica {
+
+        width: 90%;
+
+        text-align: center;
+    }
+
+
+    #tituloCancion {
+
+        font-size: 28px;
+    }
+
+
+    #botonMusica,
+    #botonSiguiente {
+
+        margin-top: 5px;
+    }
+
+
+    #gatitoMusical {
+
+        width: 90px;
+
+        height: 90px;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =================================================
+     CURSOR
+================================================= -->
+
+<img
+    id="cursorGif"
+    src="../cinnamorollsanriocharactercinnamoroll.gif"
+    alt=""
+>
+
+
+<!-- =================================================
+     VIDEO INICIAL
+================================================= -->
+
+<video
+    id="videoFondo"
+    autoplay
+    muted
+    loop
+    playsinline
+>
+
+    <source
+        src="../miyazaki.mp4"
+        type="video/mp4"
+    >
+
+</video>
+
+
+<div id="filtro"></div>
+
+
+<!-- =================================================
+     MUSICA INICIAL
+================================================= -->
+
+<audio
+    id="musicaInicio"
+    preload="auto"
+    loop
+>
+
+    <source
+        src="../Joe Hisaishi-OneSummer'sDay.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<!-- =================================================
+     LOGIN TRANSPARENTE
+================================================= -->
+
+<div id="login">
+
+    <h1>
+        Holaaa
+    </h1>
+
+
+    <div id="pista">
+        Pista: tu cumple y mi cumple
+    </div>
+
+
+    <input
+        type="password"
+        id="password"
+        placeholder="Contraseña"
+        autocomplete="off"
+    >
+
+
+    <button
+        id="entrar"
+        onclick="entrar()"
+    >
+        ENTRAR
+    </button>
+
+
+    <div id="error">
+        Contraseña incorrecta
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     FONDO MUSICAL
+================================================= -->
+
+<div id="fondoMusical"></div>
+
+
+<!-- =================================================
+     PANTALLA PRINCIPAL
+================================================= -->
+
+<div id="musicaContainer">
+
+
+    <!-- =============================================
+         MUSICA
+    ============================================== -->
+
+    <div id="zonaMusica">
+
+
+        <div id="portadaContainer">
+
+            <img
+                id="logoCancion"
+                src="../Meandyourmama-ChildishGambino.jfif"
+                alt="Logo de la canción"
+            >
+
+        </div>
+
+
+        <div id="controlesMusica">
+
+
+            <div id="tituloCancion">
+                Me and Your Mama
+            </div>
+
+
+            <input
+                type="range"
+                id="volumen"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.7"
+            >
+
+
+            <br>
+
+
+            <button
+                id="botonMusica"
+                onclick="pausarMusica()"
+            >
+                ▶ Continuar
+            </button>
+
+
+            <button
+                id="botonSiguiente"
+                onclick="cambiarCancion()"
+            >
+                ▶ Siguiente canción
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =============================================
+         KIRBY
+    ============================================== -->
+
+    <div id="zonaJuego">
+
+        <div id="marcoJuego">
+
+            <iframe
+                src="https://www.retrogames.cc/embed/24938-kirby-super-star-usa.html"
+                title="Kirby Super Star"
+                allowfullscreen
+                scrolling="no">
+            </iframe>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     GATITO
+================================================= -->
+
+<img
+    id="gatitoMusical"
+    src="../gatito.gif"
+    alt="Gatito"
+>
+
+
+<!-- =================================================
+     AUDIO PLAYLIST
+================================================= -->
+
+<audio
+    id="musica"
+    preload="auto">
+</audio>
+
+
+<div id="estadoMusica">
+    ♪ Pausado
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const videoFondo =
+    document.getElementById("videoFondo");
+
+
+const musicaInicio =
+    document.getElementById("musicaInicio");
+
+
+const musica =
+    document.getElementById("musica");
+
+
+const login =
+    document.getElementById("login");
+
+
+const password =
+    document.getElementById("password");
+
+
+const error =
+    document.getElementById("error");
+
+
+const musicaContainer =
+    document.getElementById("musicaContainer");
+
+
+const fondoMusical =
+    document.getElementById("fondoMusical");
+
+
+const logoCancion =
+    document.getElementById("logoCancion");
+
+
+const tituloCancion =
+    document.getElementById("tituloCancion");
+
+
+const volumen =
+    document.getElementById("volumen");
+
+
+const botonMusica =
+    document.getElementById("botonMusica");
+
+
+const estadoMusica =
+    document.getElementById("estadoMusica");
+
+
+const cursorGif =
+    document.getElementById("cursorGif");
+
+
+/* =====================================================
+   VOLUMEN
+===================================================== */
+
+musicaInicio.volume = 0.7;
+
+musica.volume = 0.7;
+
+
+/* =====================================================
+   CURSOR
+===================================================== */
+
+document.addEventListener(
+    "mousemove",
+    function(event) {
+
+        cursorGif.style.left =
+            event.clientX + "px";
+
+        cursorGif.style.top =
+            event.clientY + "px";
+
+    }
+);
+
+
+/* =====================================================
+   MUSICA INICIAL
+===================================================== */
+
+let musicaInicialActivada = false;
+
+
+function iniciarMusicaInicial() {
+
+    if (musicaInicialActivada) {
+
+        return;
+    }
+
+
+    musicaInicio.volume = 0.7;
+
+
+    musicaInicio.play()
+        .then(function() {
+
+            musicaInicialActivada = true;
+
+            console.log(
+                "One Summer's Day reproduciéndose"
+            );
+
+        })
+        .catch(function() {
+
+            musicaInicialActivada = false;
+
+        });
+
+}
+
+
+/*
+   Intento automático.
+*/
+
+iniciarMusicaInicial();
+
+
+/*
+   Primer clic.
+*/
+
+document.addEventListener(
+    "click",
+    function() {
+
+        /*
+           Solo iniciar si todavía estamos
+           en la pantalla de inicio.
+        */
+
+        if (
+            musicaContainer.style.display !== "flex"
+        ) {
+
+            iniciarMusicaInicial();
+
+        }
+
+    }
+);
+
+
+/*
+   También al entrar al campo.
+*/
+
+password.addEventListener(
+    "focus",
+    function() {
+
+        if (
+            musicaContainer.style.display !== "flex"
+        ) {
+
+            iniciarMusicaInicial();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PLAYLIST
+===================================================== */
+
+const canciones = [
+
+
+    /* -----------------------------------------------
+       1. CHILDISH GAMBINO
+    ----------------------------------------------- */
+
+    {
+
+        nombre:
+            "Me and Your Mama",
+
+        archivo:
+            "../Childish Gambino Me and Your Mama Official Audio.mp3",
+
+        logo:
+            "../Meandyourmama-ChildishGambino.jfif",
+
+        color:
+            "#000000"
+
+    },
+
+
+    /* -----------------------------------------------
+       2. LOVE MAYBE
+    ----------------------------------------------- */
+
+    {
+
+        nombre:
+            "Love, Maybe",
+
+        archivo:
+            "../멜로망스(MeloMance) - 사랑인가 봐 (Love, Maybe) (사내맞선 OST) A Business Proposal OST 스페셜 트랙.mp3",
+
+        logo:
+            "../love,maybe.jfif",
+
+        color:
+            "#666666"
+
+    },
+
+
+    /* -----------------------------------------------
+       3. BRUNO MARS
+    ----------------------------------------------- */
+
+    {
+
+        nombre:
+            "Lo Arriesgo Todo",
+
+        archivo:
+            "../Bruno Mars - Lo Arriesgo Todo [Official Lyric Video].mp3",
+
+        logo:
+            "../bruno.jfif",
+
+        color:
+            "#8b0000"
+
+    }
+
+];
+
+
+let cancionActual = 0;
+
+
+/* =====================================================
+   ACTUALIZAR INTERFAZ
+===================================================== */
+
+function actualizarInterfaz() {
+
+    const cancion =
+        canciones[cancionActual];
+
+
+    /*
+       Cambiar color
+    */
+
+    fondoMusical.style.background =
+        cancion.color;
+
+
+    /*
+       Desvanecer logo
+    */
+
+    logoCancion.style.opacity =
+        "0";
+
+    tituloCancion.style.opacity =
+        "0";
+
+
+    setTimeout(
+        function() {
+
+
+            /*
+               Nuevo logo
+            */
+
+            logoCancion.src =
+                cancion.logo;
+
+
+            /*
+               Nuevo titulo
+            */
+
+            tituloCancion.textContent =
+                cancion.nombre;
+
+
+            /*
+               Mostrar logo
+            */
+
+            logoCancion.onload =
+                function() {
+
+                    logoCancion.style.opacity =
+                        "1";
+
+                };
+
+
+            logoCancion.onerror =
+                function() {
+
+                    logoCancion.style.opacity =
+                        "1";
+
+                };
+
+
+            tituloCancion.style.opacity =
+                "1";
+
+
+        },
+        300
+    );
+
+}
+
+
+/* =====================================================
+   REPRODUCIR CANCION
+===================================================== */
+
+function reproducirCancion() {
+
+    const cancion =
+        canciones[cancionActual];
+
+
+    musica.pause();
+
+    musica.currentTime =
+        0;
+
+
+    musica.src =
+        cancion.archivo;
+
+
+    musica.volume =
+        parseFloat(
+            volumen.value
+        );
+
+
+    musica.load();
+
+
+    actualizarInterfaz();
+
+
+    musica.play()
+        .then(function() {
+
+
+            botonMusica.textContent =
+                "❚❚ Pausar";
+
+
+            estadoMusica.textContent =
+                "♪ Reproduciendo";
+
+
+        })
+        .catch(function(error) {
+
+            console.log(
+                "Error reproduciendo:",
+                error
+            );
+
+        });
+
+}
+
+
+/* =====================================================
+   SIGUIENTE CANCION
+===================================================== */
+
+function cambiarCancion() {
+
+    cancionActual++;
+
+
+    if (
+        cancionActual >=
+        canciones.length
+    ) {
+
+        cancionActual = 0;
+
+    }
+
+
+    reproducirCancion();
+
+}
+
+
+/* =====================================================
+   PAUSAR / CONTINUAR
+===================================================== */
+
+function pausarMusica() {
+
+
+    if (
+        musica.paused
+    ) {
+
+
+        musica.play();
+
+
+        botonMusica.textContent =
+            "❚❚ Pausar";
+
+
+        estadoMusica.textContent =
+            "♪ Reproduciendo";
+
+
+    }
+
+    else {
+
+
+        musica.pause();
+
+
+        botonMusica.textContent =
+            "▶ Continuar";
+
+
+        estadoMusica.textContent =
+            "♪ Pausado";
+
+    }
+
+}
+
+
+/* =====================================================
+   CAMBIO DE VOLUMEN
+===================================================== */
+
+volumen.addEventListener(
+    "input",
+    function() {
+
+        musica.volume =
+            parseFloat(
+                volumen.value
+            );
+
+    }
+);
+
+
+/* =====================================================
+   CUANDO TERMINA UNA CANCION
+===================================================== */
+
+musica.addEventListener(
+    "ended",
+    function() {
+
+        cambiarCancion();
+
+    }
+);
+
+
+/* =====================================================
+   ENTRAR
+===================================================== */
+
+function entrar() {
+
+
+    /*
+       COMPROBAR CONTRASEÑA
+    */
+
+    if (
+        password.value !== "0512"
+    ) {
+
+
+        error.style.display =
+            "block";
+
+
+        password.value =
+            "";
+
+
+        password.focus();
+
+
+        return;
+
+    }
+
+
+    /*
+       CONTRASEÑA CORRECTA
+    */
+
+    error.style.display =
+        "none";
+
+
+    /*
+       DETENER COMPLETAMENTE
+       LA MUSICA DE INICIO
+    */
+
+    musicaInicio.pause();
+
+    musicaInicio.currentTime = 0;
+
+    musicaInicialActivada = false;
+
+    /*
+       Liberar el audio inicial
+       para evitar que vuelva a reproducirse
+    */
+
+    musicaInicio.removeAttribute("src");
+
+    const fuenteInicio =
+        musicaInicio.querySelector("source");
+
+    if (fuenteInicio) {
+
+        fuenteInicio.removeAttribute("src");
+
+    }
+
+    musicaInicio.load();
+
+
+    /*
+       DETENER VIDEO INICIAL
+    */
+
+    videoFondo.pause();
+
+    videoFondo.currentTime = 0;
+
+
+    /*
+       OCULTAR VIDEO
+    */
+
+    videoFondo.style.display =
+        "none";
+
+
+    document.getElementById(
+        "filtro"
+    ).style.display =
+        "none";
+
+
+    /*
+       OCULTAR LOGIN
+    */
+
+    login.style.display =
+        "none";
+
+
+    /*
+       MOSTRAR PANTALLA MUSICAL
+    */
+
+    musicaContainer.style.display =
+        "flex";
+
+
+    /*
+       VOLUMEN
+    */
+
+    volumen.value =
+        0.7;
+
+
+    musica.volume =
+        0.7;
+
+
+    /*
+       PRIMERA CANCION
+    */
+
+    cancionActual =
+        0;
+
+
+    reproducirCancion();
+
+}
+
+
+/* =====================================================
+   ENTER EN CONTRASEÑA
+===================================================== */
+
+password.addEventListener(
+    "keydown",
+    function(event) {
+
+
+        if (
+            event.key === "Enter"
+        ) {
+
+            entrar();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
